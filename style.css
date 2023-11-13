@@ -28,6 +28,15 @@ body {
     background-color: var(--outer-color);
 }
 
+#startup {
+    position: absolute;
+    background-color: cornflowerblue;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #game {
     position: absolute;
     background-size: cover;
