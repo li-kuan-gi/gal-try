@@ -49,12 +49,11 @@ body {
     height: var(--interface-height);
     padding: 1%;
     background-color: var(--interface-bg-color);
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 
 #main {
-    width: 65%;
     height: 100%;
 }
 

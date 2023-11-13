@@ -39,17 +39,24 @@
             }
 
             index++;
+        } else {
+            globalConductor.returnStartup();
         }
     };
 
     gameDiv.addEventListener("touchend", _ => nextFrame());
 
-    globalConductor.addGameStartHandler(i => {
+    globalConductor.addBeforeGameStartHandler(i => {
         index = i;
         fetch("./script.json").then(res => res.json()).then(json => {
             script = json;
             nextFrame();
         });
+    });
+
+    globalConductor.addBeforeExitGameHandler(() => {
+        if (vocal !== null) vocal.pause();
+        if (bgm !== null) bgm.pause();
     });
 
     globalConductor.addPlayingStageKeyEventHandler(e => {

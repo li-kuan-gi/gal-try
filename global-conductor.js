@@ -6,8 +6,15 @@ const globalConductor = (() => {
         STARTUP: "startup",
         PLAYING: "playing"
     };
+
+    const beforeGameStartHandlers = [];
+    const beforeExitGameHandlers = [];
+
     let stage;
     const toStage = newStage => {
+        if (stage === GAME_STAGE.PLAYING && newStage !== GAME_STAGE.PLAYING) {
+            beforeExitGameHandlers.forEach(handler => handler());
+        }
         stage = newStage;
         switch (stage) {
             case GAME_STAGE.STARTUP:
@@ -22,9 +29,7 @@ const globalConductor = (() => {
     };
     toStage(GAME_STAGE.STARTUP);
 
-    const gameStartHandlers = [];
     const playingStageKeyEventHandlers = [];
-
     document.addEventListener("keypress", e => {
         if (stage === GAME_STAGE.PLAYING) {
             playingStageKeyEventHandlers.forEach(handler => handler(e));
@@ -32,13 +37,13 @@ const globalConductor = (() => {
     });
 
     return {
-        addGameStartHandler: handler => gameStartHandlers.push(handler),
+        addBeforeGameStartHandler: handler => beforeGameStartHandlers.push(handler),
         startGame: index => {
-            if (stage === GAME_STAGE.STARTUP) {
-                gameStartHandlers.forEach(handler => handler(index));
-                toStage(GAME_STAGE.PLAYING);
-            }
+            beforeGameStartHandlers.forEach(handler => handler(index));
+            toStage(GAME_STAGE.PLAYING);
         },
+        addBeforeExitGameHandler: handler => beforeExitGameHandlers.push(handler),
+        returnStartup: () => toStage(GAME_STAGE.STARTUP),
         addPlayingStageKeyEventHandler: handler => playingStageKeyEventHandlers.push(handler),
     };
 })();
