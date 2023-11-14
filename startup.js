@@ -6,9 +6,4 @@
         e.stopPropagation();
         globalConductor.startGame(0);
     });
-    startBtn.addEventListener("click", e => {
-        e.preventDefault();
-        e.stopPropagation();
-        globalConductor.startGame(0);
-    });
 })();

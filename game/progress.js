@@ -58,10 +58,4 @@
         if (vocal !== null) vocal.pause();
         if (bgm !== null) bgm.pause();
     });
-
-    globalConductor.addPlayingStageKeyEventHandler(e => {
-        if (e.key === " ") {
-            nextFrame();
-        }
-    });
 })();

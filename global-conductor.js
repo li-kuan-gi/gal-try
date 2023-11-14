@@ -27,14 +27,8 @@ const globalConductor = (() => {
                 break;
         }
     };
-    toStage(GAME_STAGE.STARTUP);
 
-    const playingStageKeyEventHandlers = [];
-    document.addEventListener("keypress", e => {
-        if (stage === GAME_STAGE.PLAYING) {
-            playingStageKeyEventHandlers.forEach(handler => handler(e));
-        }
-    });
+    toStage(GAME_STAGE.STARTUP);
 
     return {
         addBeforeGameStartHandler: handler => beforeGameStartHandlers.push(handler),
@@ -43,7 +37,6 @@ const globalConductor = (() => {
             toStage(GAME_STAGE.PLAYING);
         },
         addBeforeExitGameHandler: handler => beforeExitGameHandlers.push(handler),
-        returnStartup: () => toStage(GAME_STAGE.STARTUP),
-        addPlayingStageKeyEventHandler: handler => playingStageKeyEventHandlers.push(handler),
+        returnStartup: () => toStage(GAME_STAGE.STARTUP)
     };
 })();
