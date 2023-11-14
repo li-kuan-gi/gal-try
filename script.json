@@ -1,46 +1,58 @@
 [
     {
         "bgImg": "bg_01.webp",
-        "name": null,
         "bgm": "bgm1.mp3"
     },
     {
-        "name": "雫",
+        "bgImg": "bg_01.webp",
+        "bgm": "bgm1.mp3",
+        "character": "雫",
         "text": "ええ。みのりちゃんはファンのみんなの気持ちを 一番わかってるって感じがして、とても心強いわ",
         "vocal": "vocal_1.mp3"
     },
     {
-        "name": "みのり",
+        "bgImg": "bg_01.webp",
+        "bgm": "bgm1.mp3",
+        "character": "みのり",
         "text": "そ、そうかな……？",
         "vocal": "vocal_2.mp3"
     },
     {
-        "name": "みのり",
+        "bgImg": "bg_01.webp",
+        "bgm": "bgm1.mp3",
+        "character": "みのり",
         "text": "えへへ、見てくれるみんなに喜んでもらえるように、 もっともっともーっとがんばるね！",
         "vocal": "vocal_3.mp3"
     },
     {
         "bgImg": "bg_02.webp",
-        "name": null,
         "bgm": "bgm2.mp3"
     },
     {
-        "name": "みのり",
+        "bgImg": "bg_02.webp",
+        "bgm": "bgm2.mp3",
+        "character": "みのり",
         "text": "今日の配信も、楽しんでもらえてよかったぁ",
         "vocal": "vocal_4.mp3"
     },
     {
-        "name": "みのり",
+        "bgImg": "bg_02.webp",
+        "bgm": "bgm2.mp3",
+        "character": "みのり",
         "text": "……ちょっと失敗もしちゃったけど……",
         "vocal": "vocal_5.mp3"
     },
     {
-        "name": "みのり",
+        "bgImg": "bg_02.webp",
+        "bgm": "bgm2.mp3",
+        "character": "みのり",
         "text": "でも、次はもっともっとがんばって きっといつかは遥ちゃん達みたいに——！",
         "vocal": "vocal_6.mp3"
     },
     {
-        "name": "通行人A",
+        "bgImg": "bg_02.webp",
+        "bgm": "bgm2.mp3",
+        "character": "通行人A",
         "text": "ねえねえ、MORE MORE JUMP！って知ってる？"
     }
 ]

@@ -1,6 +1,8 @@
 (() => {
     let script;
     let index;
+    let previousBgImg;
+    let previousbgmFile;
     let bgm = null;
     let vocal = null;
 
@@ -10,18 +12,18 @@
 
     const nextFrame = () => {
         if (index < script.length) {
-            // If a feild is not set in new description, it will inherit the one in old description,
-            // but `text` and `vocal` fields will be cleared.
             const description = script[index];
 
             const bgImg = description.bgImg;
             const text = description.text;
-            const character = description.name;
+            const character = description.character;
             const vocalFile = description.vocal;
             const bgmFile = description.bgm;
 
-            if (bgImg !== undefined) gameDiv.style.backgroundImage = `url("assets/images/${bgImg}")`;
-            if (character !== undefined) characterDiv.innerText = character;
+            if (bgImg !== previousBgImg) {
+                gameDiv.style.backgroundImage = `url("assets/images/${bgImg}")`;
+            }
+            characterDiv.innerText = character || null;
             textDiv.innerText = text || null;
             if (vocal !== null) {
                 vocal.pause();
@@ -30,13 +32,18 @@
                 vocal = new Audio(`assets/sounds/${vocalFile}`);
                 vocal.play();
             }
-            if (bgmFile !== undefined) {
+            if (bgmFile !== previousbgmFile) {
+                previousbgmFile = bgmFile;
                 if (bgm !== null) {
                     bgm.pause();
                 }
-                bgm = new Audio(`assets/sounds/${bgmFile}`);
-                bgm.play();
+                if (bgmFile !== undefined) {
+                    bgm = new Audio(`assets/sounds/${bgmFile}`);
+                    bgm.play();
+                }
             }
+
+            globalGameHistory.updateIndex(index);
 
             index++;
         } else {
@@ -57,5 +64,6 @@
     globalConductor.addBeforeExitGameHandler(() => {
         if (vocal !== null) vocal.pause();
         if (bgm !== null) bgm.pause();
+        previousbgmFile = undefined;
     });
 })();
