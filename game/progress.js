@@ -1,4 +1,4 @@
-(() => {
+{
     let script;
     let index;
     let previousBgImg;
@@ -66,4 +66,4 @@
         if (bgm !== null) bgm.pause();
         previousbgmFile = undefined;
     });
-})();
+}

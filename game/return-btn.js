@@ -1,4 +1,4 @@
-(() => {
+{
     const returnStartupBtn = document.getElementById("return-start-up");
 
     returnStartupBtn.addEventListener("touchend", e => {
@@ -6,4 +6,4 @@
         e.stopPropagation();
         globalConductor.returnStartup();
     });
-})();
+}
