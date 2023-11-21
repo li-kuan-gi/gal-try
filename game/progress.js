@@ -10,9 +10,9 @@
     const characterDiv = document.getElementById("name");
     const textDiv = document.getElementById("text");
 
-    const nextFrame = () => {
-        if (index < script.length) {
-            const description = script[index];
+    const showFrame = i => {
+        if (i < script.length) {
+            const description = script[i];
 
             const bgImg = description.bgImg;
             const text = description.text;
@@ -43,21 +43,22 @@
                 }
             }
 
-            globalGameHistory.updateIndex(index);
-
-            index++;
+            globalGameHistory.updateIndex(i);
         } else {
             globalConductor.returnStartup();
         }
     };
 
-    gameDiv.addEventListener("touchend", _ => nextFrame());
+    gameDiv.addEventListener("touchend", _ => {
+        index++;
+        showFrame(index);
+    });
 
     globalConductor.addBeforeGameStartHandler(i => {
         index = i;
         fetch("./script.json").then(res => res.json()).then(json => {
             script = json;
-            nextFrame();
+            showFrame(index)
         });
     });
 
@@ -65,5 +66,13 @@
         if (vocal !== null) vocal.pause();
         if (bgm !== null) bgm.pause();
         previousbgmFile = undefined;
+    });
+
+    const saveBtn = document.getElementById("save-btn");
+    saveBtn.addEventListener("touchend", e => {
+        e.preventDefault();
+        e.stopPropagation();
+        globalGameHistory.saveIndex(index);
+        alert("successfully saved");
     });
 }
